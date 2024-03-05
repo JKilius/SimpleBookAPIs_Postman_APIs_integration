@@ -3,7 +3,7 @@ name: Automated API tests using Postman CLI
 on:
   push:
     branches: 
-      -main
+      - main
 
 env: 
   BASE_URI: 'https://simple-books-api.glitch.me'
@@ -12,7 +12,8 @@ jobs:
   automated-api-tests:
     runs-on: ${{matrix.os}}
     strategy: 
-      matrix: [ubuntu-latest, windows-latest, macos-latest]
+      matrix: 
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v3
       - name: Install Postman CLI
