@@ -28,7 +28,7 @@ jobs:
           npm install -g newman
       - name: Install Newman Reporter
         run: |
-          npm install -g newman-report-html
+          npm install -g newman-reporter-html
       - name: Fetch postman collection
         run: |
           curl -X GET newman run "https://api.getpostman.com/collections/${POSTMAN_COLLECTION_UID}" \
@@ -41,11 +41,6 @@ jobs:
       - name: Run API tests
         run: |
           postman collection run "31058211-a8638445-9b84-4f65-abba-1ad8582069b9" -e "31058211-73f0e4c8-2004-40f7-ac9e-05ae44550993"
-
-
-
-      - name: Login to Postman CLI
-        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
       - name: Run API tests
         run: |
           newman collection.json --environment environment.json --reporters cli,html --reporter-html-export "./report.html"
