@@ -43,7 +43,7 @@ jobs:
           postman collection run "31058211-a8638445-9b84-4f65-abba-1ad8582069b9" -e "31058211-73f0e4c8-2004-40f7-ac9e-05ae44550993"
       - name: Run API tests
         run: |
-          newman collection.json --environment environment.json --reporters cli,html --reporter-html-export "./report.html"
+          newman collection.json --environment environment.json --reporters cli,html --reporter-html-export "report.html"
       - name: Upload report
         uses: actions/upload-artifact@v4
         with: 
