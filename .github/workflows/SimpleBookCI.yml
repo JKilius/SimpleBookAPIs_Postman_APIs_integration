@@ -31,17 +31,17 @@ jobs:
           npm install -g newman-reporter-html
       - name: Fetch postman collection
         run: |
-          curl -X get newman run "https://api.getpostman.com/collections/${POSTMAN_COLLECTION_UID}" \
+          curl -X GET "https://api.getpostman.com/collections/${POSTMAN_COLLECTION_UID}" \
             -H "X-Api-Key: ${POSTMAN_API_KEY}" > collection.json
         shell: bash
       - name: Fetch postman environment
         run: |
-          curl -X get newman run "https://api.getpostman.com/collections/${POSTMAN_ENVIRONMENT_UID}" \
+          curl -X GET "https://api.getpostman.com/collections/${POSTMAN_ENVIRONMENT_UID}" \
           -H "X-Api-Key: ${POSTMAN_API_KEY}" > environment.json
         shell: bash
       - name: Run API tests
         run: |
-          newman run export collection.json --environment environment.json --reporters cli,html --reporter-html-export "./report.html"
+          newman run collection.json --environment environment.json --reporters cli,html --reporter-html-export "./report.html"
       - name: Upload report
         uses: actions/upload-artifact@v4
         with: 
